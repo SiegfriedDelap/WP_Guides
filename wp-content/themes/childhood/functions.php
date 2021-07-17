@@ -22,5 +22,26 @@ function childhood_scripts() {
 
 add_theme_support( 'custom-logo' );
 add_theme_support( 'post-thumbnails' ); //изображение записей на заднем фоне
+add_theme_support( 'menus' );
+
+
+add_filter('nav_menu_link_attributes', 'filter_nav_menu_link_attributes', 10, 3);
+
+function filter_nav_menu_link_attributes($atts, $item, $args){
+    //atts все атрибуты ссылок
+    //item каждая отдельная ссылка
+    //args все аргументы меню
+    if($args->menu === 'Main'){
+        $atts['class'] = 'header__nav-item';
+
+        if($item->current){
+            $atts['class'] .= ' header__nav-item-active'; //склеили классы
+        };
+    };
+    return $atts;
+}
+
+
+
 
 ?>

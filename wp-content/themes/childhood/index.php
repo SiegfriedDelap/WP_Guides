@@ -131,216 +131,16 @@
                 </div>
             </div>
         </div>
-        <div class="specialists" id="specialists">
-            <div class="container">
-                <div class="title"><?php the_field('team_title'); ?></div>
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
-                            <?php 
-                                
-                                $image = get_field('team_img');
 
-                                if(!empty($image)): ?>
-                                    <img
-                                        src="<?php echo $image['url']; ?>"
-                                        alt="<?php echo $image['alt']; ?>"
-                                        class="specialists__img">
-
-                            <?php endif; ?>
-                        <!-- <img class="specialists__img" src="<?php echo bloginfo('template_url'); ?>/assets/img/team.jpg" alt="наша команда"> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="toys" id="toys">
-            <div class="container">
-                <h2 class="subtitle">Мягкие игрушки</h2>
-                
-                <div class="toys__wrapper">
-                    <?php 
-
-                            $posts = get_posts( array(
-                                'numberposts' => -1, //вывод всех слайдов в слайдере
-                                'category_name'    => 'soft_toys',
-                                'orderby'     => 'date',
-                                'order'       => 'ASC',
-                                'post_type'   => 'post',
-                                'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
-                            ) );
-
-                            foreach( $posts as $post ){
-                                setup_postdata($post);
-                                // формат вывода the_title() тут верстка ...
-                                ?>
-
-                            <div class="toys__item" style="background-image: url(<?php 
-                                if(has_post_thumbnail()){
-                                    the_post_thumbnail_url();
-                                } else {
-                                    echo get_template_directory_uri() . '/assets/img/not-found.jpg';
-                                }
-
-                            ?>)">
-                                <div class="toys__item-info">
-                                    <div class="toys__item-title"><?php the_title(); ?></div>
-                                    <div class="toys__item-descr">
-                                        <?php the_field('toys_descr'); ?>                           
-                                    </div>
-                                    <div class="minibutton toys__trigger">Подробнее</div>
-                                </div>
-                            </div>
-
-                            <?php
-
-                                }
-
-                                wp_reset_postdata(); // сброс
-
-                            ?>
-                </div>
-
-                <h2 class="subtitle">Развивающие игрушки</h2>
-                <div class="toys__wrapper">
-
-                <?php 
-                        $posts = get_posts( array(
-                            'numberposts' => -1, //вывод всех слайдов в слайдере
-                            'category_name'    => 'edu_toys',
-                            'orderby'     => 'date',
-                            'order'       => 'ASC',
-                            'post_type'   => 'post',
-                            'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
-                        ) );
-
-                        foreach( $posts as $post ){
-                            setup_postdata($post);
-                            // формат вывода the_title() тут верстка ...
-                    ?>
-
-                        <div class="toys__item" style="background-image: url(<?php 
-                            if(has_post_thumbnail()) {
-                                the_post_thumbnail_url();
-                            } else {
-                                echo get_template_directory_uri() . '/assets/img/not-found.jpg';
-                            }
-                        ?>
-                        )">
-                            <div class="toys__item-info">
-                                <div class="toys__item-title"><?php the_title(); ?></div>
-                                <div class="toys__item-descr">
-                                    <?php the_field('toys_descr'); ?>     
-                                </div>
-                                <div class="minibutton toys__trigger">Подробнее</div>
-                            </div>
-                        </div>
-
-                    <?php
-
-                        }
-
-                        wp_reset_postdata(); // сброс
-
-                    ?>
-                </div>
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
-                        <div class="toys__alert">
-                            <span><?php the_field('toys_bold'); ?></span> <?php the_field('toys_text'); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="aboutus" id="aboutus">
-            <div class="container">
-                <h1 class="title"><?php the_field('aboutus_title'); ?></h1>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="subtitle">
-                            <?php the_field('aboutus_subtitle_1'); ?>
-                        </div>
-                        <div class="aboutus__text">
-                            <?php the_field('aboutus_text_1'); ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                            <?php 
-                                
-                                $image = get_field('aboutus_img_1');
-
-                                if(!empty($image)): ?>
-                                    <img
-                                        src="<?php echo $image['url']; ?>"
-                                        alt="<?php echo $image['alt']; ?>"
-                                        class="aboutus__img">
-
-                            <?php endif; ?>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        
-                            <?php 
-                                
-                                $image = get_field('aboutus_img_2');
-
-                                if(!empty($image)): ?>
-                                    <img
-                                        src="<?php echo $image['url']; ?>"
-                                        alt="<?php echo $image['alt']; ?>"
-                                        class="aboutus__img">
-
-                            <?php endif; ?>
-
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="subtitle">
-                            <?php the_field('aboutus_subtitle_2'); ?>
-                        </div>
-                        <div class="aboutus__text">
-                            <?php the_field('aboutus_text_2'); ?>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="subtitle">
-                            <?php the_field('aboutus_subtitle_3'); ?>
-                        </div>
-                        <div class="aboutus__text">
-                            <?php the_field('aboutus_text_3'); ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        
-                            <?php 
-                                
-                                $image = get_field('aboutus_img_3');
-
-                                if(!empty($image)): ?>
-                                    <img
-                                        src="<?php echo $image['url']; ?>"
-                                        alt="<?php echo $image['alt']; ?>"
-                                        class="aboutus__img">
-
-                            <?php endif; ?>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="contacts" id="contacts">
-            <h1 class="title"> <?php the_field('contacts_title');?> </h1>
+        <div class="contacts">
+            <h1 class="title">Где нас найти</h1>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="contacts__descr underlined">
-                            <?php the_field('contacts_text'); ?>
+                            Мы находимся в Москве, метро "Парк победы", в деловом центре "Парк победы", второй этаж
+                            <br> <br>
+                            по адресу ул. Василисы Кожиной, 1
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -456,15 +256,16 @@
                             </div>
                             <div class="contacts__mail">
                                 Или напишите нам на почту
-                                <a href="<?php the_field('mail', 2); ?>"><?php the_field('mail', 2); ?></a>
+                                <a href="mailto:<?php the_field('mail', 2); ?>"><?php the_field('mail', 2); ?></a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="title contacts__minititle">Оставьте ваш отзыв</div>
-                            <div class="contacts__feed">
-                                <?php echo do_shortcode( '[contact-form-7 id="157" title="Форма отзывов"]' )?>
-                            </div>
+                        <div class="contacts__feed">
+                            <?php echo do_shortcode('[contact-form-7 id="157" title="Форма отзывов"]'); ?>
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="row mt70">
@@ -476,7 +277,7 @@
 
                                 <?php 
                                     $posts = get_posts( array(
-                                        'numberposts' => -1, //вывод всех слайдов в слайдере
+                                        'numberposts' => -1,
                                         'category_name'    => 'feedback',
                                         'orderby'     => 'date',
                                         'order'       => 'ASC',
@@ -486,24 +287,19 @@
 
                                     foreach( $posts as $post ){
                                         setup_postdata($post);
-                                        // формат вывода the_title() тут верстка ...
-                                ?>
+                                        ?>
+                                        <li class="glide__slide">
+                                            <div class="feedslider__title">
+                                                <?php the_title(); ?>
+                                            </div>
+                                            <div class="feedslider__text">
+                                                <?php the_field('feedback_text'); ?>
+                                            </div>
+                                        </li>
+                                    <?php
+                                    }
 
-                                    <li class="glide__slide">
-                                        <div class="feedslider__title">
-                                           <?php the_title(); ?>
-                                        </div>
-                                        <div class="feedslider__text">
-                                            <?php the_field('feedback_text'); ?>
-                                        </div>
-                                    </li>
-
-                                <?php
-
-                                        }
-
-                                        wp_reset_postdata(); // сброс
-
+                                    wp_reset_postdata(); // сброс
                                 ?>
 
                                 </ul>
@@ -513,7 +309,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>                           
+
 
 <?php 
     get_footer();
